@@ -23,12 +23,18 @@ FROM php:8.2-fpm
 COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
 
-RUN apt-get update && apt-get install -y libgmp10 libmagickwand-6.q16-6 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends git libgmp10 libmagickwand-6.q16-6 && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
 
 COPY --from=builder /app .
 
 RUN chown -R www-data:www-data /var/www/html
+RUN git config --global --add safe.directory /var/www/html
+
+COPY entry.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entry.sh
+
+ENTRYPOINT ["entry.sh"]
 
 CMD ["php-fpm"]

@@ -7,5 +7,9 @@ RUN git clone --depth 1 --branch master https://github.com/coalaura/admin-panel-
 
 RUN bun install
 
-EXPOSE 3000
-CMD [ "bun", "run", "start" ]
+COPY entry.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entry.sh
+
+ENTRYPOINT ["entry.sh"]
+
+CMD [ "bun", "main.js" ]
