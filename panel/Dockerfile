@@ -22,6 +22,7 @@ FROM php:8.2-fpm
 
 COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
+COPY --from=builder /usr/local/bin/bun /usr/local/bin/bun
 
 RUN apt-get update && apt-get install -y --no-install-recommends git libgmp10 libmagickwand-6.q16-6 && rm -rf /var/lib/apt/lists/*
 

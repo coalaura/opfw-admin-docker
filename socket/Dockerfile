@@ -2,7 +2,10 @@ FROM oven/bun:latest
 
 WORKDIR /usr/src/app
 
-RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y git
+RUN apt-get install -y --no-install-recommends build-essential python3
+RUN rm -rf /var/lib/apt/lists/*
+
 RUN git clone --depth 1 --branch master https://github.com/coalaura/admin-panel-socket.git .
 
 RUN bun install

@@ -1,4 +1,5 @@
 .env
 influx
+nginx/logs
 panel/logs
 socket/logs

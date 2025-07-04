@@ -1,9 +1,9 @@
 #!/bin/sh
 
 set -e
+cd /usr/src/app
 
 echo "Updating socket..."
-cd /usr/src/app
 git pull
 
 exec "$@"
