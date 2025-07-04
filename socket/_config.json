@@ -1,6 +1,6 @@
 {
 	"influx": {
-		"url": "http://localhost:8086",
+		"url": "http://influxdb:8086",
 		"token": "hmqCfGSRS3UUjeQmzpTaH6Qhf8avPzDC"
 	},
 	"timeout": 3000
