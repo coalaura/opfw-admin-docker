@@ -6,5 +6,10 @@ Dockerized version of the [opfw-admin](https://github.com/coalaura/opfw-admin).
 3. Run `docker compose up -d`
 4. Epic
 
-### Known bugs
-- socket connection is incredibly unstable (have yet to work out why)
+### Configuration
+
+The `.env` is the regular [opfw-admin](https://github.com/coalaura/opfw-admin) config. It has 2 additional options:
+
+|`DOCKER_PORT`|`DOCKER_CLUSTER`|
+|-|-|
+|The port to host the panel on (default: 80).|The cluster (optional, default: c1)|
