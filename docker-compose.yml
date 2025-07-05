@@ -44,6 +44,7 @@ services:
       - "host.docker.internal:host-gateway"
     environment:
       - DOCKER_MODE=true
+      - DOCKER_INFLUX_TOKEN=${DOCKER_INFLUX_TOKEN}
     env_file:
       - .env
     volumes:
@@ -63,11 +64,13 @@ services:
     environment:
       DOCKER_INFLUXDB_INIT_MODE: setup
       DOCKER_INFLUXDB_INIT_USERNAME: root
-      DOCKER_INFLUXDB_INIT_PASSWORD: password
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUX_PASSWORD}
       DOCKER_INFLUXDB_INIT_ORG: op-fw
       DOCKER_INFLUXDB_INIT_BUCKET: history
       DOCKER_INFLUXDB_INIT_RETENTION: 90d
-      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: hmqCfGSRS3UUjeQmzpTaH6Qhf8avPzDC
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: ${DOCKER_INFLUX_TOKEN}
+    env_file:
+      - .env
     networks:
       - opfw-network
 
