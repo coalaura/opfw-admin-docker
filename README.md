@@ -4,8 +4,9 @@ Dockerized version of the [opfw-admin](https://github.com/coalaura/opfw-admin).
 1. Clone this repository
 2. Run [`init.sh`](init.sh)
 3. Update your FiveM server, database and discord auth in the created `.env` file
-4. Run `docker compose up -d`
-5. Epic
+4. Run `docker compose build`
+5. Run `docker compose up -d`
+6. Epic
 
 ### Configuration
 
