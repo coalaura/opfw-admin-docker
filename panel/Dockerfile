@@ -15,8 +15,11 @@ WORKDIR /app
 
 RUN git clone --depth 1 --branch master https://github.com/coalaura/opfw-admin.git .
 RUN composer install --no-dev --optimize-autoloader
+
 RUN bun install --frozen-lockfile
 RUN bun run build
+
+RUN cp envs/example.root-config.json envs/root-config.json
 
 FROM php:8.2-fpm
 

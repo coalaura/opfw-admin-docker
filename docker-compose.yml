@@ -32,6 +32,7 @@ services:
       - panel_transcripts:/var/www/html/public/_transcripts
       - panel_uploads:/var/www/html/public/_uploads
       - ./.env:/var/www/html/.env:ro
+      - ./panel/root-config.json:/var/www/html/envs/root-config.json:ro
       - ./panel/logs:/var/www/html/storage/logs
     networks:
       - opfw-network

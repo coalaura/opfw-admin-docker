@@ -12,6 +12,8 @@ if [ ! -f ".env" ]; then
     cp .example.env .env
 fi
 
+echo "[]" > panel/root-config.json
+
 replace_value() {
     sed -i "s|^${1}=.*|${1}=${2}|" .env
 }

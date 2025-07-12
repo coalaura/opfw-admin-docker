@@ -1,5 +1,6 @@
 *docker-compose.override.yml
 *.env
+root-config.json
 influx
 nginx/logs
 panel/logs
