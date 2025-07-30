@@ -13,4 +13,7 @@ if [ "$OLD_HEAD" != "$(git rev-parse HEAD)" ]; then
 	bun run prod
 fi
 
+echo "Migrating panel..."
+php artisan migrate
+
 exec "$@"
