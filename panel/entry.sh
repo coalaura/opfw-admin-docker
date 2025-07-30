@@ -11,9 +11,9 @@ git pull
 if [ "$OLD_HEAD" != "$(git rev-parse HEAD)" ]; then
 	echo Rebuilding frontend...
 	bun run prod
-
-	echo "Migrating panel..."
-	php artisan migrate
 fi
+
+echo "Migrating panel..."
+php artisan migrate
 
 exec "$@"
