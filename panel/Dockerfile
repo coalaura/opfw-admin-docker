@@ -1,4 +1,4 @@
-FROM php:8.2-cli as builder
+FROM php:8.2-cli AS builder
 
 RUN apt-get update && apt-get install -y git unzip zip libzip-dev libpng-dev libjpeg-dev libfreetype6-dev libgmp-dev
 RUN apt-get install -y --no-install-recommends imagemagick libmagickwand-dev
@@ -27,13 +27,15 @@ COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
 COPY --from=builder /usr/local/bin/bun /usr/local/bin/bun
 
-RUN apt-get update && apt-get install -y --no-install-recommends git libgmp10 libmagickwand-6.q16-6 libzip4 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends git cron libgmp10 libmagickwand-6.q16-6 libzip4 && rm -rf /var/lib/apt/lists/*
+
+COPY cron /etc/cron.d/opfw-cron
+RUN chmod 0644 /etc/cron.d/opfw-cron
 
 WORKDIR /var/www/html
 
-COPY --from=builder /app .
+COPY --from=builder --chown=www-data:www-data /app .
 
-RUN chown -R www-data:www-data /var/www/html
 RUN git config --global --add safe.directory /var/www/html
 
 COPY entry.sh /usr/local/bin/

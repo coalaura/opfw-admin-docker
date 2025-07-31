@@ -22,6 +22,7 @@ services:
       - "host.docker.internal:host-gateway"
     environment:
       - DOCKER_MODE=true
+      - ROOT_USERS=license:2ced2cabd90f1208e7e056485d4704c7e1284196,license:ef8947e6991a8c70ebb9fdf5b0401f9712e2d20c
     env_file:
       - .env
     volumes:
@@ -32,7 +33,6 @@ services:
       - panel_transcripts:/var/www/html/public/_transcripts
       - panel_uploads:/var/www/html/public/_uploads
       - ./.env:/var/www/html/.env:ro
-      - ./panel/root-config.json:/var/www/html/envs/root-config.json:ro
       - ./panel/logs:/var/www/html/storage/logs
     networks:
       - opfw-network
