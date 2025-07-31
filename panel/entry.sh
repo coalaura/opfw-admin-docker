@@ -19,9 +19,6 @@ fi
 echo "Clearing cache..."
 rm -rf storage/framework/cache/data/*
 
-echo "Migrating panel..."
-php artisan migrate
-
 echo "Running initial cronjobs..."
 bash docker-cron.sh
 
