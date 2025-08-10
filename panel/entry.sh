@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 cd /var/www/html
 
 echo "Starting cron..."
-cron
+cron -f -L 15 &
 
 OLD_HEAD=$(git rev-parse HEAD)
 
@@ -20,6 +20,6 @@ echo "Clearing cache..."
 rm -rf storage/framework/cache/data/*
 
 echo "Running initial cronjobs..."
-bash docker-cron.sh
+php artisan cron
 
 exec "$@"

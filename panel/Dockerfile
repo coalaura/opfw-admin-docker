@@ -19,8 +19,6 @@ RUN composer install --no-dev --optimize-autoloader
 RUN bun install --frozen-lockfile
 RUN bun run build
 
-RUN cp envs/example.root-config.json envs/root-config.json
-
 FROM php:8.2-fpm
 
 COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
@@ -28,9 +26,7 @@ COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions
 COPY --from=builder /usr/local/bin/bun /usr/local/bin/bun
 
 RUN apt-get update && apt-get install -y --no-install-recommends git cron libgmp10 libmagickwand-6.q16-6 libzip4 && rm -rf /var/lib/apt/lists/*
-
-COPY cron /etc/cron.d/opfw-cron
-RUN chmod 0644 /etc/cron.d/opfw-cron
+RUN echo '* * * * * /usr/local/bin/php /var/www/html/artisan schedule:run >> /proc/1/fd/1 2>>/proc/1/fd/2' | crontab -
 
 WORKDIR /var/www/html
 
