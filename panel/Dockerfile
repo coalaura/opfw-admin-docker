@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends git libgmp10 im
 
 RUN curl -fsSL -o /usr/local/bin/supercronic https://github.com/aptible/supercronic/releases/download/v0.2.34/supercronic-linux-amd64 && chmod +x /usr/local/bin/supercronic
 
-RUN mkdir -p /etc/cron && printf "SHELL=/bin/sh\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n* * * * * /usr/local/bin/php /var/www/html/artisan schedule:run\n" > /etc/cron/app.crontab
+RUN mkdir -p /etc/cron && printf "SHELL=/bin/sh\nPATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\n0 * * * * /usr/local/bin/php /var/www/html/artisan cron\n" > /etc/cron/app.crontab
 
 WORKDIR /var/www/html
 
