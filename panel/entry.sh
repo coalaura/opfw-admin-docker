@@ -3,8 +3,8 @@
 set -e
 cd /var/www/html
 
-echo "Starting cron..."
-cron -f -L 15 &
+echo "Starting supercronic..."
+supercronic -json /etc/cron/app.crontab &
 
 OLD_HEAD=$(git rev-parse HEAD)
 
