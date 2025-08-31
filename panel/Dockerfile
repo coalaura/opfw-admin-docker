@@ -25,7 +25,7 @@ COPY --from=builder /usr/local/etc/php/conf.d/ /usr/local/etc/php/conf.d/
 COPY --from=builder /usr/local/lib/php/extensions/ /usr/local/lib/php/extensions/
 COPY --from=builder /usr/local/bin/bun /usr/local/bin/bun
 
-RUN apt-get update && apt-get install -y --no-install-recommends git libgmp10 imagemagick libmagickwand-7.q16-10 libzip5 && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends git libgmp10 imagemagick libmagickwand-7.q16-10 libzip5 procps && rm -rf /var/lib/apt/lists/*
 
 RUN curl -fsSL -o /usr/local/bin/supercronic https://github.com/aptible/supercronic/releases/download/v0.2.34/supercronic-linux-amd64 && chmod +x /usr/local/bin/supercronic
 
